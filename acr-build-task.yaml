@@ -1,35 +1,15 @@
 version: 1.0-preview-1
 steps:
 
-  - id: pull-base
-    cmd: docker pull {{.Run.Registry}}/hmcts/ccd-definition-importer/base:latest || true
-    when: ["-"]
-    keep: true
-
-  - id: base
-    build: >
-      -t {{.Run.Registry}}/hmcts/ccd-user-profile-importer/base
-      --cache-from {{.Run.Registry}}/hmcts/ccd-user-profile-importer/base:latest
-      --target base
-      .
-    when:
-      - pull-base
-    keep: true
-
-  - id: runtime
+  - id: build
     build: >
       -t {{.Run.Registry}}/hmcts/ccd-user-profile-importer:latest -t {{.Run.Registry}}/hmcts/ccd-user-profile-importer:{{.Run.ID}}
-      --cache-from {{.Run.Registry}}/hmcts/ccd-user-profile-importer/base:latest
-      --target runtime
       .
-    when:
-      - base
     keep: true
 
-  - id: push-images
+  - id: push
     push:
-      - "{{.Run.Registry}}/hmcts/ccd-user-profile-importer/base:latest"
       - "{{.Run.Registry}}/hmcts/ccd-user-profile-importer:{{.Run.ID}}"
       - "{{.Run.Registry}}/hmcts/ccd-user-profile-importer:latest"
     when:
-      - runtime
+      - build
