@@ -18,6 +18,10 @@ users=$(echo "${CCD_USERS}" | tr "," "\n")
 for user in $users
 do
     echo "Adding \"$user\" ..."
-    post=$(curl --fail --silent --show-error -X POST ${CCD_USER_PROFILE_URL}/user-profile/users  -H "content-type: application/json" -H "ServiceAuthorization: Bearer ${serviceToken}" -d "{\"id\": \"${user}\",\"jurisdictions\": [{\"id\": \"${JURISDICTION}\"}],\"work_basket_default_jurisdiction\": \"${JURISDICTION}\",\"work_basket_default_case_type\": \"${DEFAULT_CASE_TYPE}\",\"work_basket_default_state\": \"${DEFAULT_CASE_STATE}\"}\"")
+    EMAIL=$(echo $user | cut -f1 -d'|')
+    JURISDICTION=$(echo $user | cut -f2 -d'|')
+    DEFAULT_CASE_TYPE=$(echo $user | cut -f3 -d'|')
+    DEFAULT_CASE_STATE=$(echo $user | cut -f4 -d'|')
+    post=$(curl --fail --silent --show-error -X POST ${CCD_USER_PROFILE_URL}/user-profile/users  -H "content-type: application/json" -H "ServiceAuthorization: Bearer ${serviceToken}" -d "{\"id\": \"${EMAIL}\",\"jurisdictions\": [{\"id\": \"${JURISDICTION}\"}],\"work_basket_default_jurisdiction\": \"${JURISDICTION}\",\"work_basket_default_case_type\": \"${DEFAULT_CASE_TYPE}\",\"work_basket_default_state\": \"${DEFAULT_CASE_STATE}\"}\"")
     echo "done: ${post}"
 done
