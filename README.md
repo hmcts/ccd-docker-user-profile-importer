@@ -11,7 +11,7 @@ More info on ACR tasks can be read here: https://docs.microsoft.com/en-us/azure/
 
 ## Configuration
 
-The scripts that expect the following environment to be available.
+The scripts expect the following environment to be available.
 
 | Parameter | Description  |
 |-------------|------------|
