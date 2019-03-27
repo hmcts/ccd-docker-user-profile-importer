@@ -5,7 +5,7 @@ Docker image to load user profiles into CCD.
 ## Building
 
 Any commit or merge into master will automatically trigger an Azure ACR task. This task has been manually
-created using `/bin/deploy-acr-task.sh`. The task is defined in `acr-build-task.yaml`. Note: you will need a GitHub personal token defined in `GITHUB_TOKEN` environment variable to run deploy script (https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
+created using `./bin/deploy-acr-task.sh`. The task is defined in `acr-build-task.yaml`. Note: you will need a GitHub personal token defined in `GITHUB_TOKEN` environment variable to run deploy script (https://help.github.com/en/articles/creating-a-personal-access-token-for-the-command-line).
 
 More info on ACR tasks can be read here: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview
 
