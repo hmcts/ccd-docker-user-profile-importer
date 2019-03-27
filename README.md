@@ -18,6 +18,7 @@ The scripts that expect the following environment to be available.
 | `CCD_USERS` | Comma separated string of CCD user items to add - note: these should already exist in IDAM! The script terminates if this is empty. Each user item must contain, in exactly this format: `EMAIL\|JURISDICTION\|DEFAULT_CASE_TYPE\|DEFAULT_CASE_STATE` | 
 | `CCD_JURISDICTIONS` | Comma separated string of CCD jurisdictions to add - note: these will relate to above users! The script terminates if this is empty. | 
 | `WAIT_HOSTS` | Hosts to wait for before loading the definitions. (optional) |
+| `WAIT_HOSTS_TIMEOUT` | How long to wait in seconds for before giving up. (optional) |
 | `VERBOSE` | Output extra info. (optional) | 
 | `AUTH_PROVIDER_BASE_URL` | Base URL for the service auth provider to get a token for the import | 
 | `MICROSERVICE` | Authorised microservice for accessing user profile service. E.g. `ccd_definition` | 
