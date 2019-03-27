@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 
+az account set --subscription DCD-CNP-DEV
 az acr task create \
     --registry hmcts \
     --name task-ccd-user-profile-importer \
