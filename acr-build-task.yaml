@@ -3,13 +3,13 @@ steps:
 
   - id: build
     build: >
-      -t {{.Run.Registry}}/hmcts/ccd-user-profile-importer:latest -t {{.Run.Registry}}/hmcts/ccd-user-profile-importer:{{.Run.ID}}
+      -t {{.Run.Registry}}/ccd/user-profile-importer:latest -t {{.Run.Registry}}/ccd/user-profile-importer:{{.Run.ID}}
       .
     keep: true
 
   - id: push
     push:
-      - "{{.Run.Registry}}/hmcts/ccd-user-profile-importer:{{.Run.ID}}"
-      - "{{.Run.Registry}}/hmcts/ccd-user-profile-importer:latest"
+      - "{{.Run.Registry}}/ccd/user-profile-importer:{{.Run.ID}}"
+      - "{{.Run.Registry}}/ccd/user-profile-importer:latest"
     when:
       - build
