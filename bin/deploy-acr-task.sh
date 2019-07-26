@@ -5,6 +5,7 @@ GITHUB_TOKEN=$(az keyvault secret show --vault-name infra-vault-prod --name hmct
 
 az acr task create \
     --registry hmctspublic \
+    --subscription DCD-CNP-PROD
     --name task-ccd-user-profile-importer \
     --file acr-build-task.yaml \
     --context https://github.com/hmcts/ccd-docker-user-profile-importer.git \
