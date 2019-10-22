@@ -2,9 +2,9 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: "{{ .Release.Name }}-user-profile-importer"
+  name: {{ template "hmcts.ccdupi.releaseName" . }}
   labels:
-    app.kubernetes.io/name: "{{ .Release.Name }}-user-profile-importer"
+    app.kubernetes.io/name: {{ template "hmcts.ccdupi.releaseName" . }}
     app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
     app.kubernetes.io/instance: {{ .Release.Name | quote }}
     helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
@@ -15,14 +15,14 @@ metadata:
 spec:
   template:
     metadata:
-      name: "{{ .Release.Name }}-user-profile-importer"
+      name: {{ template "hmcts.ccdupi.releaseName" . }}
       labels:
         app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
         app.kubernetes.io/instance: {{ .Release.Name | quote }}
         helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
     spec:
       containers:
-        - name: {{ .Release.Name }}-user-profile-importer
+        - name: {{ template "hmcts.ccdupi.releaseName" . }}
           image: {{ .Values.importer.userprofile.image }} 
           imagePullPolicy: IfNotPresent
           env:
