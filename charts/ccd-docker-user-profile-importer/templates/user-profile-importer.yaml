@@ -4,10 +4,7 @@ kind: Job
 metadata:
   name: {{ template "hmcts.ccdupi.releaseName" . }}
   labels:
-    app.kubernetes.io/name: {{ template "hmcts.ccdupi.releaseName" . }}
-    app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-    app.kubernetes.io/instance: {{ .Release.Name | quote }}
-    helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    {{- ( include "ccdupi.labels" . ) | indent 4 }}
   annotations:
     helm.sh/hook: post-install,post-upgrade
     helm.sh/hook-weight: "5"
@@ -17,9 +14,7 @@ spec:
     metadata:
       name: {{ template "hmcts.ccdupi.releaseName" . }}
       labels:
-        app.kubernetes.io/managed-by: {{ .Release.Service | quote }}
-        app.kubernetes.io/instance: {{ .Release.Name | quote }}
-        helm.sh/chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+        {{- ( include "ccdupi.labels" . ) | indent 4 }}
     spec:
       containers:
         - name: {{ template "hmcts.ccdupi.releaseName" . }}
@@ -27,7 +22,7 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
           - name: CCD_USER_PROFILE_URL
-            value: http://{{ .Release.Name }}-user-profile-api
+            value: {{ .Values.importer.userprofile.userProfileUrl }}
           - name: AUTH_PROVIDER_BASE_URL
             value: {{ .Values.s2sUrl }}
           - name: MICROSERVICE

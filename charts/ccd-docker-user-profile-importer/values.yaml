@@ -5,6 +5,7 @@ importer:
     cpuRequests: '250m'
     memoryLimits: '2048Mi'
     cpuLimits: '1500m'
+    userProfileUrl: 
     users:
     jurisdictions:
     waitHosts: ""
