@@ -2,7 +2,6 @@
 CHART := ccd-user-profile-importer
 RELEASE := chart-${CHART}-release
 NAMESPACE := chart-tests
-TEST := ${RELEASE}-test-service
 ACR := hmctssandbox
 AKS_RESOURCE_GROUP := sbox-00-rg
 AKS_CLUSTER := sbox-00-aks
@@ -28,9 +27,7 @@ inspect:
 deploy:
 	helm install ${CHART} --name ${RELEASE} --namespace ${NAMESPACE} -f ci-values.yaml --wait
 
-test:
-	helm test ${RELEASE}
 
-all: setup clean lint deploy test
+all: setup clean lint deploy
 
-.PHONY: setup clean lint deploy test all
+.PHONY: setup clean lint deploy all
