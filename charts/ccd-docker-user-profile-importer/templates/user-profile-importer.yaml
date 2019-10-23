@@ -1,4 +1,3 @@
-{{- if .Values.importer.userprofile.enabled }}
 apiVersion: batch/v1
 kind: Job
 metadata:
@@ -18,35 +17,35 @@ spec:
     spec:
       containers:
         - name: {{ template "hmcts.ccdupi.releaseName" . }}
-          image: {{ .Values.importer.userprofile.image }} 
+          image: {{ .Values.image }} 
           imagePullPolicy: IfNotPresent
           env:
           - name: CCD_USER_PROFILE_URL
-            value: {{ .Values.importer.userprofile.userProfileUrl }}
+            value: {{ .Values.userProfileUrl }}
           - name: AUTH_PROVIDER_BASE_URL
             value: {{ .Values.s2sUrl }}
           - name: MICROSERVICE
-            value: {{ .Values.importer.userprofile.microservice }}
+            value: {{ .Values.microservice }}
           - name: CCD_USERS
-            value: {{ join "," .Values.importer.userprofile.users | quote }}
+            value: {{ join "," .Values.users | quote }}
           - name: CCD_JURISDICTIONS
-            value: {{ join "," .Values.importer.userprofile.jurisdictions | quote }}
+            value: {{ join "," .Values.jurisdictions | quote }}
           - name: WAIT_HOSTS
-            value: {{ .Values.importer.userprofile.waitHosts | quote }}
+            value: {{ .Values.waitHosts | quote }}
           - name: WAIT_HOSTS_TIMEOUT
-            value: {{ .Values.importer.userprofile.waitHostsTimeout | quote }}
+            value: {{ .Values.waitHostsTimeout | quote }}
           - name: CCD_USER_PROFILE_DB_HOST
-            value: {{ .Values.importer.userprofile.userProfileDatabaseHost | quote }}
+            value: {{ .Values.userProfileDatabaseHost | quote }}
           - name: CCD_USER_PROFILE_DB_PORT
-            value: {{ .Values.importer.userprofile.userProfileDatabasePort | quote }}
+            value: {{ .Values.userProfileDatabasePort | quote }}
           - name: CCD_USER_PROFILE_DB_USERNAME
-            value: {{ .Values.importer.userprofile.userProfileDatabaseUser | quote }}
+            value: {{ .Values.userProfileDatabaseUser | quote }}
           - name: CCD_USER_PROFILE_DB_PASSWORD
-            value: {{ .Values.importer.userprofile.userProfileDatabasePassword | quote }}
+            value: {{ .Values.userProfileDatabasePassword | quote }}
           - name: CCD_USER_PROFILE_DB_DATABASE
-            value: {{ .Values.importer.userprofile.userProfileDatabaseName | quote }}
+            value: {{ .Values.userProfileDatabaseName | quote }}
           - name: VERBOSE
-            value: {{ .Values.importer.userprofile.verbose | quote }}
+            value: {{ .Values.verbose | quote }}
           resources:
             requests:
               memory: {{ .Values.memoryRequests }}
@@ -55,4 +54,3 @@ spec:
               memory: {{ .Values.memoryLimits }}
               cpu: {{ .Values.cpuLimits }}
       restartPolicy: Never
-{{- end }}
