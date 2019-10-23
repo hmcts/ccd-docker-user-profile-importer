@@ -14,20 +14,16 @@ setup:
 	az acr helm repo add --name ${HELM_REPO}
 	az aks get-credentials --resource-group ${AKS_RESOURCE_GROUP} --name ${AKS_CLUSTER} --overwrite-existing
 
-clean:
-	-helm delete --purge ${RELEASE}
-	-kubectl delete pod ${TEST} -n ${NAMESPACE}
-
 lint:
-	helm lint ${CHART} --namespace ${NAMESPACE} -f ci-values.yaml
+	helm lint ${CHART} --namespace ${NAMESPACE}
 
 inspect:
 	helm inspect chart ${CHART}
 
 deploy:
-	helm install ${CHART} --name ${RELEASE} --namespace ${NAMESPACE} -f ci-values.yaml --wait
+	helm install ${CHART} --name ${RELEASE} --namespace ${NAMESPACE} --wait
 
 
-all: setup clean lint deploy
+all: setup  lint deploy
 
-.PHONY: setup clean lint deploy all
+.PHONY: setup  lint deploy all

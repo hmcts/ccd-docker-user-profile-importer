@@ -12,8 +12,8 @@ importer:
     waitHostsTimeout: 300
     microservice: ccd_definition
     verbose: "false"
-    userProfileDatabaseHost: "${SERVICE_NAME}-ccd-postgres"
+    userProfileDatabaseHost: ccd-user-profile-api-postgres-db-{{ .Values.global.environment }}.postgres.database.azure.com
     userProfileDatabasePort: "5432"
     userProfileDatabaseUser: "hmcts"
     userProfileDatabasePassword: "hmcts"
-    userProfileDatabaseName: "user-profile"
+    userProfileDatabaseName: ccd_user_profile
