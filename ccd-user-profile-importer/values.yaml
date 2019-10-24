@@ -10,7 +10,7 @@ waitHosts: ""
 waitHostsTimeout: 300
 microservice: ccd_definition
 verbose: "false"
-userProfileDatabaseHost: {{ . Release.Name }}-postgresql
+userProfileDatabaseHost: "{{ . Release.Name }}-postgresql"
 userProfileDatabasePort: "5432"
 userProfileDatabaseUser: "hmcts"
 userProfileDatabasePassword: "hmcts"
