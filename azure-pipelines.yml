@@ -22,8 +22,8 @@ jobs:
   steps:
   - template: steps/charts/validate.yaml@cnp-library
     parameters:
-      chartName: ccd-user-profile-importer
-      chartReleaseName: chart-ccd-user-profile-importer-ci-test
+      chartName: ccd-docker-user-profile-importer
+      chartReleaseName: chart-ccd-docker-user-profile-importer-ci-test
       chartNamespace: chart-tests
       helmInstallTimeout: "600"
 
@@ -40,6 +40,6 @@ jobs:
   steps:
   - template: steps/charts/release.yaml@cnp-library
     parameters:
-      chartName: ccd-user-profile-importer
-      chartReleaseName: chart-ccd-user-profile-importer
+      chartName: ccd-docker-user-profile-importer
+      chartReleaseName: chart-ccd-docker-user-profile-importer
       chartNamespace: chart-tests

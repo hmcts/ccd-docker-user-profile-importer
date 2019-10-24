@@ -1,5 +1,5 @@
 description: Helm chart for the HMCTS CCD USER PROFILE Importer
-name: ccd-user-profile-importer
+name: ccd-docker-user-profile-importer
 home: https://github.com/hmcts/ccd-docker-user-profile-importer
 version: 1.0.0
 maintainers:
