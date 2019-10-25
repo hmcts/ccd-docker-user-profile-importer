@@ -1,2 +1,2 @@
-ci:
-  enabled: true
+enableCI: true   #Need this for pipleine build only
+   
