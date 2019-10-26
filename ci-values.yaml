@@ -1,2 +1,2 @@
-enableCI: true   #Need this for pipleine build only
+dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
    
