@@ -2,6 +2,12 @@ dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
 postgresql:
   persistence:
     enabled: false
+  resources:
+    requests:
+      cpu: 25m
+  postgresqlUsername: hmcts
+  postgresqlPassword: hmcts
+  postgresqlDatabase: ccd_user_profile  
 users:
   - civilmoneyclaims+ccd@gmail.com|CMC|MoneyClaimCase|open
 jurisdictions:
