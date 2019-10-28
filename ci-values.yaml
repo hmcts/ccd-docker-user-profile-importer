@@ -1,2 +1,8 @@
 dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
+postgresql:
+  nameOverride: postgres
+users:
+  - civilmoneyclaims+ccd@gmail.com|CMC|MoneyClaimCase|open
+jurisdictions:
+  - CMC
    
