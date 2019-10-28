@@ -1,6 +1,5 @@
 dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
 postgresql:
-  nameOverride: postgres
   persistence:
     enabled: false
 users:
