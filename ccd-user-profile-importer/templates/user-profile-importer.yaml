@@ -36,7 +36,8 @@ spec:
             value: {{ .Values.waitHosts | quote }}
           - name: WAIT_HOSTS_TIMEOUT
             value: {{ .Values.waitHostsTimeout | quote }}
-          - name: {{ template "hmcts.ccdupi.databaseHostName" . }}
+          - name: CCD_USER_PROFILE_DB_HOST
+            value: {{ template "hmcts.ccdupi.databaseHostName" . }}
           - name: CCD_USER_PROFILE_DB_PORT
             value: {{ .Values.userProfileDatabasePort | quote }}
           - name: CCD_USER_PROFILE_DB_USERNAME
