@@ -5,7 +5,9 @@ memoryLimits: '2048Mi'
 cpuLimits: '1500m'
 userProfileUrl: 
 users:
+  - civilmoneyclaims+ccd@gmail.com|CMC|MoneyClaimCase|open
 jurisdictions:
+  - CMC
 waitHosts: ""
 waitHostsTimeout: 300
 microservice: ccd_definition
