@@ -18,3 +18,4 @@ app.kubernetes.io/instance: {{ template "hmcts.ccdupi.releaseName" . }}
 {{- if .Values.userProfileDatabaseHost -}}
 {{- tpl .Values.userProfileDatabaseHost $ | trunc 53 | trimSuffix "-" -}}
 {{- end -}}
+{{- end -}}
