@@ -8,8 +8,9 @@ postgresql:
   postgresqlUsername: hmcts
   postgresqlPassword: hmcts
   postgresqlDatabase: ccd_user_profile  
-# users:
-#   - civilmoneyclaims+ccd@gmail.com|CMC|MoneyClaimCase|open
-# jurisdictions:
-#   - CMC
+users:
+  - adasari123.hmcts.claimant+1@gmail.com|CMC|MoneyClaimCase|open
+jurisdictions:
+  - CMC
+verbose: true
    

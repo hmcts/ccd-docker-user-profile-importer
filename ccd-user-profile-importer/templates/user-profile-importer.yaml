@@ -23,9 +23,9 @@ spec:
           imagePullPolicy: IfNotPresent
           env:
           - name: CCD_USER_PROFILE_URL
-            value: {{ .Values.userProfileUrl }}
+            value: {{ tpl .Values.userProfileUrl $ }}
           - name: AUTH_PROVIDER_BASE_URL
-            value: {{ .Values.s2sUrl }}
+            value: {{ tpl .Values.s2sUrl $ }}
           - name: MICROSERVICE
             value: {{ .Values.microservice }}
           - name: CCD_USERS
