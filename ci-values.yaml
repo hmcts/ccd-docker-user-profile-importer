@@ -1,4 +1,7 @@
 dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
+ccd:
+  postgresql:
+    enabled: true
 postgresql:
   persistence:
     enabled: false

@@ -1,3 +1,6 @@
+ccd:
+  postgresql:
+    enabled: false
 image: 'hmctspublic.azurecr.io/ccd/user-profile-importer:latest'
 memoryRequests: '512Mi'
 cpuRequests: '250m'
