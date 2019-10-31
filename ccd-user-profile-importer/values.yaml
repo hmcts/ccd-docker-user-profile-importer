@@ -15,7 +15,8 @@ userProfileDatabaseHost: "{{ .Release.Name }}-postgresql"
 userProfileDatabasePort: "5432"
 userProfileDatabaseUser: "hmcts"
 userProfileDatabasePassword: "hmcts"
-userProfileDatabaseName: ccd_user_profile
+userProfileDatabaseName: user-profile
 
 global:
   environment: aat
+
