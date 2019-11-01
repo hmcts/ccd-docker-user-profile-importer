@@ -1,4 +1,4 @@
-image: 'hmctspublic.azurecr.io/ccd/user-profile-importer:ddsd'
+image: 'hmctspublic.azurecr.io/ccd/user-profile-importer:latest'
 memoryRequests: '512Mi'
 cpuRequests: '250m'
 memoryLimits: '2048Mi'
