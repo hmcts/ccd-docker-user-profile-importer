@@ -10,4 +10,4 @@ RUN ["chmod", "+x", "/wait"]
 
 RUN chmod +x /scripts/*.sh
 
-CMD "/wait" && "/scripts/create-jurisdiction.sh" && "/scripts/create-users.sh"
+CMD "/wait" && "/scripts/create-users.sh"
