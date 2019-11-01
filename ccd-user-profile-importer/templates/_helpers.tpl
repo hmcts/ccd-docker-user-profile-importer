@@ -14,8 +14,3 @@ helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 app.kubernetes.io/instance: {{ template "hmcts.ccdupi.releaseName" . }}
 {{- end -}}
-{{- define "hmcts.ccdupi.databaseHostName" -}}
-{{- if .Values.userProfileDatabaseHost -}}
-{{- tpl .Values.userProfileDatabaseHost $ | trunc 53 | trimSuffix "-" -}}
-{{- end -}}
-{{- end -}}

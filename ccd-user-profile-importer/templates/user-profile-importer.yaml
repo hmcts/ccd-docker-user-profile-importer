@@ -30,22 +30,10 @@ spec:
             value: {{ .Values.microservice }}
           - name: CCD_USERS
             value: {{ join "," .Values.users | quote }}
-          - name: CCD_JURISDICTIONS
-            value: {{ join "," .Values.jurisdictions | quote }}
           - name: WAIT_HOSTS
             value: {{ .Values.waitHosts | quote }}
           - name: WAIT_HOSTS_TIMEOUT
             value: {{ .Values.waitHostsTimeout | quote }}
-          - name: CCD_USER_PROFILE_DB_HOST
-            value: {{ template "hmcts.ccdupi.databaseHostName" . }}
-          - name: CCD_USER_PROFILE_DB_PORT
-            value: {{ .Values.userProfileDatabasePort | quote }}
-          - name: CCD_USER_PROFILE_DB_USERNAME
-            value: {{ .Values.userProfileDatabaseUser | quote }}
-          - name: CCD_USER_PROFILE_DB_PASSWORD
-            value: {{ .Values.userProfileDatabasePassword | quote }}
-          - name: CCD_USER_PROFILE_DB_DATABASE
-            value: {{ .Values.userProfileDatabaseName | quote }}
           - name: VERBOSE
             value: {{ .Values.verbose | quote }}
           resources:
