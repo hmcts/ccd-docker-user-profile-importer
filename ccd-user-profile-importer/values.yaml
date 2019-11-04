@@ -10,4 +10,5 @@ waitHosts: ""
 waitHostsTimeout: 300
 microservice: ccd_definition
 
-
+global:
+  environment: 
