@@ -9,8 +9,5 @@ users:
 waitHosts: ""
 waitHostsTimeout: 300
 microservice: ccd_definition
-verbose: "false"
 
-global:
-  environment: aat
 
