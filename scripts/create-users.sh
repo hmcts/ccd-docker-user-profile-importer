@@ -11,8 +11,27 @@ else
   export CURL_OPTS="--fail --silent --show-error"
 fi
 
-echo "Getting service_token from s2s"
-serviceToken=$(curl --fail --silent --show-error -X POST ${AUTH_PROVIDER_BASE_URL}/testing-support/lease -d "{\"microservice\":\"${MICROSERVICE}\"}" -H 'content-type: application/json')
+_healthy="false"
+
+if [ "$AUTH_PROVIDER_BASE_URL" != "" ]; then
+ 
+  HEALTH_URL="${AUTH_PROVIDER_BASE_URL}/health"
+  echo "==========  Getting service_token from s2s  ==============================="
+  for i in $(seq 0 30)
+  do
+    sleep 10
+    wget -O - "$HEALTH_URL" >/dev/null
+    [ "$?" == "0" ] && _healthy="true" && break
+  done
+   
+  if [ "$_healthy" != "true" ]; then
+    echo "Error: application does not seem to be running, check the application logs to see why" 
+    exit 2
+  else 
+     serviceToken=$(curl --fail --silent --show-error -X POST ${AUTH_PROVIDER_BASE_URL}/testing-support/lease -d "{\"microservice\":\"${MICROSERVICE}\"}" -H 'content-type: application/json')
+  fi
+fi
+
 
 users=$(echo "${CCD_USERS}" | tr "," "\n")
 for user in $users
