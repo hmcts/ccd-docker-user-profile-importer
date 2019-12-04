@@ -22,6 +22,6 @@ do
     JURISDICTION=$(echo $user | cut -f2 -d'|')
     DEFAULT_CASE_TYPE=$(echo $user | cut -f3 -d'|')
     DEFAULT_CASE_STATE=$(echo $user | cut -f4 -d'|')
-    post=$(curl --silent --show-error -X PUT ${CCD_USER_PROFILE_URL}/userprofile/users  -H "content-type: application/json" -H "ServiceAuthorization: Bearer ${serviceToken}" -d "{\"id\": \"${EMAIL}\",\"jurisdictions\": [{\"id\": \"${JURISDICTION}\"}],\"work_basket_default_jurisdiction\": \"${JURISDICTION}\",\"work_basket_default_case_type\": \"${DEFAULT_CASE_TYPE}\",\"work_basket_default_state\": \"${DEFAULT_CASE_STATE}\"}\"")
+    post=$(curl --silent --show-error -X PUT ${CCD_USER_PROFILE_URL}/userprofile/users/save  -H "content-type: application/json" -H "ServiceAuthorization: Bearer ${serviceToken}" -d "{\"id\": \"${EMAIL}\",\"jurisdictions\": [{\"id\": \"${JURISDICTION}\"}],\"work_basket_default_jurisdiction\": \"${JURISDICTION}\",\"work_basket_default_case_type\": \"${DEFAULT_CASE_TYPE}\",\"work_basket_default_state\": \"${DEFAULT_CASE_STATE}\"}\"")
     echo "done: ${post}"
 done
