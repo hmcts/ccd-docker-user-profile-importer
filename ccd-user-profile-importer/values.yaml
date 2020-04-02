@@ -9,6 +9,6 @@ users:
 waitHosts: ""
 waitHostsTimeout: 300
 microservice: ccd_definition
-
+debug: false
 global:
   environment: 
