@@ -9,6 +9,9 @@
 All the common labels needed for the labels sections of the definitions.
 */}}
 {{- define "ccdupi.labels" }}
+{{- if .Values.aadIdentityName }}
+aadpodidbinding: {{ .Values.aadIdentityName }}
+{{- end }}
 app.kubernetes.io/name: {{ template "hmcts.ccdupi.releaseName" . }}
 helm.sh/chart: {{ .Chart.Name }}-{{ .Chart.Version }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
