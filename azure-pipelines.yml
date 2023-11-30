@@ -11,7 +11,7 @@ resources:
   repositories:
   - repository: cnp-azuredevops-libraries
     type: github
-    ref: marty/chart-release-bugfix
+    ref: master
     name: hmcts/cnp-azuredevops-libraries
     endpoint: 'hmcts'
 
