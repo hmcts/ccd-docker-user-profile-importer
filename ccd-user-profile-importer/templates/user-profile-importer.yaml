@@ -14,8 +14,8 @@ spec:
   {{- with .Values.activeDeadlineSeconds }}
   activeDeadlineSeconds: {{ . }}
   {{- end }}
-  {{- with .Values.ttlSecondsAfterFinished }}
-  ttlSecondsAfterFinished: {{ . }}
+  {{- if ne .Values.ttlSecondsAfterFinished nil }}
+  ttlSecondsAfterFinished: {{ .Values.ttlSecondsAfterFinished }}
   {{- end }}
   template:
     metadata:
