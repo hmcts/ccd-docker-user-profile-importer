@@ -11,6 +11,14 @@ Note: the deploy script relys on a GitHub token (https://help.github.com/en/arti
 
 More info on ACR tasks can be read here: https://docs.microsoft.com/en-us/azure/container-registry/container-registry-tasks-overview
 
+## Helm chart releases
+
+Pull requests that change the Helm chart are linted and rendered by GitHub Actions.
+
+To publish a release, update the version in `ccd-user-profile-importer/Chart.yaml` and push a matching Git tag.
+The workflow packages the chart and publishes it to `oci://hmctsprod.azurecr.io/helm` using Azure workload
+identity federation. An existing version can also be published by manually running the workflow from `master`.
+
 ## Configuration
 
 The scripts expect the following environment to be available.
