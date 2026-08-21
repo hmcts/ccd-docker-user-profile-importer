@@ -1,0 +1,98 @@
+name: Helm chart
+
+on:
+  pull_request:
+    branches:
+      - master
+    paths:
+      - ccd-user-profile-importer/**
+      - ci-values.yaml
+      - .github/workflows/helm-chart.yml
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ACR_NAME: hmctsprod
+  CHART_NAME: ccd-user-profile-importer
+  CHART_PATH: ccd-user-profile-importer
+  CI_VALUES: ci-values.yaml
+
+jobs:
+  validate:
+    name: Validate
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.3.1
+
+      - name: Lint chart
+        run: helm lint "$CHART_PATH" --strict --values "$CI_VALUES"
+
+      - name: Render chart
+        run: >-
+          helm template chart-ci-test "$CHART_PATH"
+          --namespace chart-tests
+          --values "$CI_VALUES"
+          > /dev/null
+
+  publish:
+    name: Publish
+    needs: validate
+    if: >-
+      github.event_name == 'push' ||
+      (github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/master')
+    runs-on: ubuntu-24.04
+    environment: acr-publish
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4.3.1
+
+      - name: Verify chart version
+        id: chart
+        shell: bash
+        run: |
+          chart_version="$(helm show chart "$CHART_PATH" | sed -n 's/^version: //p')"
+          if [[ -z "$chart_version" ]]; then
+            echo "Unable to read the chart version from $CHART_PATH/Chart.yaml"
+            exit 1
+          fi
+
+          if [[ "$GITHUB_EVENT_NAME" == "push" && "$GITHUB_REF_NAME" != "$chart_version" ]]; then
+            echo "Tag $GITHUB_REF_NAME does not match chart version $chart_version"
+            exit 1
+          fi
+
+          echo "version=$chart_version" >> "$GITHUB_OUTPUT"
+
+      - name: Package chart
+        run: helm package "$CHART_PATH" --destination dist
+
+      - name: Log in to Azure
+        uses: azure/login@v3
+        with:
+          client-id: 0c90bba4-bee6-42d1-8398-dedede1319d1 # DTS Platform Operations GitHub Actions ACR Publisher 2
+          tenant-id: 531ff96d-0ae9-462a-8d2d-bec7c0b42082 # HMCTS.NET
+          allow-no-subscriptions: true
+
+      - name: Log in to ACR
+        run: az acr login --name "$ACR_NAME"
+
+      - name: Publish chart
+        run: >-
+          helm push
+          "dist/${CHART_NAME}-${{ steps.chart.outputs.version }}.tgz"
+          "oci://${ACR_NAME}.azurecr.io/helm"
