@@ -1,10 +1,10 @@
 dummyConfigInCI: true   #This Flag enables dummy-config for pipleine build only
 users:
   - adasari123.hmcts.claimant+1@gmail.com|CMC|MoneyClaimCase|open
- 
+
+backoffLimit: 0
+activeDeadlineSeconds: 330
+ttlSecondsAfterFinished: 600
+
 global:
   environment: aat
-
-
-
-   

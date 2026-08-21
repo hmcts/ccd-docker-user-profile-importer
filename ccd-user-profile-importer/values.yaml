@@ -8,6 +8,9 @@ s2sUrl: http://rpe-service-auth-provider-{{ .Values.global.environment }}.servic
 users: 
 waitHosts: ""
 waitHostsTimeout: 300
+backoffLimit: 6
+activeDeadlineSeconds:
+ttlSecondsAfterFinished:
 microservice: ccd_definition
 debug: false
 global:

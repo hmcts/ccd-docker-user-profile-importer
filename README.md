@@ -30,3 +30,21 @@ The scripts expect the following environment to be available.
 | `CCD_USER_PROFILE_DB_USERNAME` | CCD User Profile Database Username. |
 | `CCD_USER_PROFILE_DB_PASSWORD` | CCD User Profile Database Password. | 
 | `CCD_USER_PROFILE_DB_DATABASE` | CCD User Profile Database Name - e.g. `user_profile`. | 
+
+The Helm chart also supports the following Job lifecycle settings:
+
+| Value | Default | Description |
+|-------|---------|-------------|
+| `backoffLimit` | `6` | Number of retries before Kubernetes marks the importer Job as failed. |
+| `activeDeadlineSeconds` | unset | Maximum duration of the Job, including retries. |
+| `ttlSecondsAfterFinished` | unset | Number of seconds to retain a completed or failed Job before Kubernetes removes it. |
+
+For example, a consuming chart can opt into one bounded attempt and automatic cleanup:
+
+```yaml
+ccd-user-profile-importer:
+  waitHostsTimeout: 300
+  backoffLimit: 0
+  activeDeadlineSeconds: 330
+  ttlSecondsAfterFinished: 600
+```
